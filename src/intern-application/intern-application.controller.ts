@@ -6,7 +6,7 @@ export class InternApplicationController {
     constructor(private readonly internApplicationService:InternApplicationService){}
 
     @Get()
-    getApplication() :boolean{
+    getApplication() {
         return this.internApplicationService.getApplication();
     }
 }
