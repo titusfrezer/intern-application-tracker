@@ -21,15 +21,17 @@ model User {
   name  String?
   password String
   github_link String?
-  linkeding_link String?
+  linkedin_link String?
   applications Application[]
 }
 
 model Application {
   id Int @default(autoincrement()) @id
   progression STATUS @default(SUBMITTED)
-  applicant User @relation(fields:[applicantId], references: [id])
-  applicantId Int
+  applicant User @relation(fields:[applicant_id], references: [id])
+  applicant_id Int
+  applying_for String
+  message String
 }
 
 enum STATUS {

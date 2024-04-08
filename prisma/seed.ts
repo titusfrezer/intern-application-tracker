@@ -7,11 +7,11 @@ async function main() {
   // create two dummy recipes
   const user1 = await prisma.user.create({
     data:{
-        email : 'email@email.com',
+        email : 'teme@email.com',
         name: "teme",
         password: "teme",
         github_link: "github.com",
-        linkeding_link : "ldksfjs",
+        linkedin_link : "ldksfjs",
 
     }
   });
