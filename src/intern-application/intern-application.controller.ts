@@ -1,4 +1,4 @@
-import { Controller,Get,Post,Body, UsePipes } from '@nestjs/common';
+import { Controller,Get,Post,Body, UsePipes, Param } from '@nestjs/common';
 
 
 import { User,Application, Prisma } from '@prisma/client';
@@ -15,9 +15,12 @@ export class InternApplicationController {
     }
 
     @Post()
-    @UsePipes(new ZodValidationPipe(applicationSchema))
     async createApplication(@Body() data:applicationDto): Promise<Application> {
-       
         return this.internApplicationService.createApplication(data);
+    }
+
+    @Get(':id')
+    getApplicationDetail(@Param('id') id:any){
+        return this.internApplicationService.getApplicationDetail(parseInt(id));
     }
 }
