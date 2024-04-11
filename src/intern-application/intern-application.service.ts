@@ -3,17 +3,35 @@ import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import { Application } from '.prisma/client';
+import { ICreatePost } from './dto/application-dto';
 
 @Injectable()
 export class InternApplicationService {
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaService) { }
 
-    async createApplication(data:any) :Promise<Application>{
-        
-        return this.prisma.application.create({ data });
+    async createApplication(data: ICreatePost) {
 
+        try {
+
+            const application = await this.prisma.application.create({
+                data: {
+                    applying_for: data.applying_for,
+                    message: data.message,
+                    applicant: {
+                        "connect": {
+                            "id": data.applicant
+                        }
+                    }
+                }
+            });
+            if (application) {
+                return application;
+            }
+        } catch (error) {
+            return error;
+        }
     }
-    getApplication(): any{
+    getApplication(): any {
         return this.prisma.user.findMany();
     }
 }

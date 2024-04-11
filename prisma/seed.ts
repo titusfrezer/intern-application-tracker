@@ -11,7 +11,7 @@ async function main() {
         name: "teme",
         password: "teme",
         github_link: "github.com",
-        linkedin_link : "ldksfjs",
+        linkedin_link : "ldksfjs"
 
     }
   });
