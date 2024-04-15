@@ -33,13 +33,17 @@ export class InternApplicationService {
         return this.prisma.application.findMany();
     }
 
-    getApplicationDetail(id) {
+    async getApplicationDetail(id) {
         try {
-            return this.prisma.application.findUnique({
+            const application = await this.prisma.application.findUnique({
                 where: {
                     id: id
                 }
             })
+            if (application) {
+                return application;
+            }
+            return { "error": "No Application found" };
         } catch (error) {
             return error;
         }
