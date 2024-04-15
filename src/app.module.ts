@@ -6,9 +6,11 @@ import { InternApplicationService } from './intern-application/intern-applicatio
 import { ConfigModule } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { InternApplicationModule } from './intern-application/intern-application.module';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), PrismaModule, InternApplicationModule],
+  imports: [ConfigModule.forRoot(), PrismaModule, InternApplicationModule, AuthModule, UsersModule],
   controllers: [AppController, InternApplicationController],
   providers: [AppService, InternApplicationService],
 })
